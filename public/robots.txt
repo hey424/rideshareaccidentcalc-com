@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rideshareaccidentcalc.com/sitemap-index.xml
