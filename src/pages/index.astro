@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const title = 'Rideshare Accident Settlement Calculator | rideshareaccidentcalc.com';
+const description = 'Estimate potential settlement value for an Uber or Lyft accident. Covers Uber/Lyft insurance phases, medical costs, and driver vs. passenger claims. Free, informational.';
+---
+<BaseLayout title={title} description={description}>
+  <h1>Rideshare Accident Settlement Calculator</h1>
+  <p><em>Reviewed by Aspen Lockwood (AL), Editor-in-Chief. Updated May 2026.</em></p>
+  <p>Rideshare accidents involving Uber and Lyft are complicated by a three-phase insurance structure: Period 0 (app off), Period 1 (app on, waiting), and Periods 2&amp;3 (en route or carrying a passenger). The applicable coverage — and available limits — differ dramatically across these phases. This calculator estimates potential recovery based on driver status at the time of the accident.</p>
+  <h2>Run the estimate</h2>
+  <form id="calc" novalidate>
+    <label for="role">Your role in the accident</label>
+    <select id="role">
+      <option value="passenger">Passenger in the rideshare vehicle</option>
+      <option value="third-party">Third party struck by the rideshare vehicle</option>
+      <option value="driver">Rideshare driver injured by another vehicle</option>
+    </select>
+    <label for="phase">Driver app status at time of accident</label>
+    <select id="phase">
+      <option value="period2-3">Period 2/3 — driver accepted trip or carrying passenger ($1M Uber/Lyft coverage)</option>
+      <option value="period1">Period 1 — app on, waiting for request ($50K–$100K contingent coverage)</option>
+      <option value="period0">Period 0 — app off (driver&rsquo;s personal insurance only)</option>
+    </select>
+    <label for="medical-costs">Medical costs (USD)</label>
+    <input id="medical-costs" type="number" value="25000" min="0" />
+    <label for="lost-wages">Lost wages (USD)</label>
+    <input id="lost-wages" type="number" value="5000" min="0" />
+    <label for="severity">Injury severity</label>
+    <select id="severity">
+      <option value="catastrophic">Catastrophic — TBI, spinal cord, permanent disability</option>
+      <option value="severe">Severe — major surgery, extended hospitalization, serious fractures</option>
+      <option value="moderate">Moderate — fractures, soft tissue, significant treatment</option>
+      <option value="minor">Minor — soft tissue, cuts, short treatment course</option>
+    </select>
+    <button type="submit">Estimate settlement</button>
+  </form>
+  <p id="result" aria-live="polite"></p>
+  <h2>Uber and Lyft insurance phases explained</h2>
+  <p><strong>Period 0 (app off):</strong> Driver&rsquo;s personal auto insurance applies. Rideshare companies provide no coverage. <strong>Period 1 (app on, no ride accepted):</strong> Uber and Lyft provide contingent liability coverage: $50,000/person, $100,000/accident, $25,000 property damage — but only if the driver&rsquo;s personal insurance doesn&rsquo;t apply. <strong>Periods 2&amp;3 (accepted trip through end of ride):</strong> Both companies provide $1,000,000 in third-party liability coverage and contingent comprehensive/collision coverage for the driver. This is the most favorable phase for passengers and third parties.</p>
+  <h2>Where to learn more</h2>
+  <p>See <a href="/guides/how-rideshare-accident-claims-work">how rideshare accident claims work</a>, <a href="/guides/rideshare-insurance-phases">rideshare insurance phases</a>, <a href="/guides/what-to-do-after-rideshare-accident">what to do after a rideshare accident</a>, and <a href="/guides/rideshare-accident-misconceptions">common misconceptions</a>.</p>
+  <script>
+    document.getElementById('calc').addEventListener('submit', e => {
+      e.preventDefault();
+      const role = document.getElementById('role').value;
+      const phase = document.getElementById('phase').value;
+      const medCosts = parseFloat(document.getElementById('medical-costs').value)||0;
+      const lostWages = parseFloat(document.getElementById('lost-wages').value)||0;
+      const severity = document.getElementById('severity').value;
+      const multiplier = {catastrophic:7,severe:5,moderate:3.5,minor:2}[severity];
+      const painSuffering = (medCosts * multiplier) + (lostWages * 2);
+      const gross = medCosts + lostWages + painSuffering;
+      // Insurance limit cap
+      const limitCap = phase==='period2-3' ? 1000000 : (phase==='period1' ? 100000 : 50000);
+      const effectiveGross = Math.min(gross, limitCap);
+      const fmt = n=>'$'+Math.round(n).toLocaleString();
+      document.getElementById('result').innerHTML =
+        `<strong>Estimated range: ${fmt(effectiveGross*0.6)} &ndash; ${fmt(effectiveGross*1.2)}</strong><br>Economic damages: ${fmt(medCosts+lostWages)} &bull; Pain &amp; suffering: ${fmt(painSuffering)} &bull; Available coverage: ${fmt(limitCap)}<br><em>${phase==='period1' ? 'Period 1 coverage is contingent — applies only if driver&rsquo;s personal insurance denies the claim.' : phase==='period0' ? 'App was off — only the driver&rsquo;s personal auto insurance applies. Coverage may be limited.' : 'Period 2/3 provides $1M Uber/Lyft coverage — best position for passengers and third parties.'}</em>`;
+    });
+  </script>
+</BaseLayout>
