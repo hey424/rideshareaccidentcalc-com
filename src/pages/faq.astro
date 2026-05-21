@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const title = 'FAQ | rideshareaccidentcalc.com';
+const description = 'Frequently asked questions about rideshare accident claims: Uber/Lyft insurance phases, driver vs. passenger claims, and independent contractor status.';
+---
+<BaseLayout title={title} description={description}>
+  <h1>Frequently Asked Questions</h1>
+  <h2>Is the Uber/Lyft driver an employee or independent contractor?</h2>
+  <p>Rideshare drivers are classified as independent contractors by Uber and Lyft, not employees. This means standard respondeat superior liability (employer responsible for employee&rsquo;s torts) generally does not apply. The rideshare company&rsquo;s insurance is provided as a contractual benefit, not as vicarious liability. California&rsquo;s AB5 attempted to reclassify drivers but was partially overridden by Prop 22.</p>
+  <h2>What is &ldquo;contingent coverage&rdquo; in Period 1?</h2>
+  <p>Uber and Lyft&rsquo;s Period 1 coverage only kicks in if the driver&rsquo;s personal auto insurance denies the claim. Most personal auto policies exclude commercial driving — so the contingent coverage often does apply in practice. But there can be a coverage gap dispute if the personal insurer argues the exclusion doesn&rsquo;t apply.</p>
+  <h2>Can I sue Uber or Lyft directly?</h2>
+  <p>Generally difficult due to independent contractor classification. Claims are typically made against the rideshare company&rsquo;s insurance program rather than the company directly. Some states and specific fact patterns (failure to vet drivers, known safety issues) allow direct claims against the platform.</p>
+  <h2>What if both drivers are at fault?</h2>
+  <p>Comparative fault applies. In a two-vehicle rideshare accident where both drivers share fault, each driver&rsquo;s insurance covers their proportionate liability. Passengers of either vehicle can typically recover from both insurers based on their total damages.</p>
+  <h2>Do I need an attorney for a rideshare accident?</h2>
+  <p>For serious injuries, yes. Rideshare insurance claims involve complex multi-party coverage questions. An attorney experienced in rideshare claims can navigate the insurance structure, ensure the correct phase is applied, and deal with multiple adjusters. Most work on contingency.</p>
+</BaseLayout>
