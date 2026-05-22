@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const title = 'Rideshare Accident Settlement Calculator | rideshareaccidentcalc.com';
-const description = 'Estimate potential settlement value for an Uber or Lyft accident. Covers Uber/Lyft insurance phases, medical costs, and driver vs. passenger claims. Free, informational.';
+const description = 'Estimate potential settlement value for an Uber or Lyft accident. Covers all three insurance phases, injury severity multipliers, and driver vs. passenger claims. Free, informational.';
 ---
 <BaseLayout title={title} description={description}>
   <h1>Rideshare Accident Settlement Calculator</h1>
-  <p><em>Reviewed by Aspen Lockwood (AL), Editor-in-Chief. Updated May 2026.</em></p>
-  <p>Rideshare accidents involving Uber and Lyft are complicated by a three-phase insurance structure: Period 0 (app off), Period 1 (app on, waiting), and Periods 2&amp;3 (en route or carrying a passenger). The applicable coverage — and available limits — differ dramatically across these phases. This calculator estimates potential recovery based on driver status at the time of the accident.</p>
-  <h2>Run the estimate</h2>
+  <p><em>Reviewed by Zara Flemming (ZF), Editor-in-Chief &mdash; Rideshare &amp; Transportation Accident Practice. Updated May 2026.</em></p>
+  <p>Rideshare accidents involving Uber and Lyft are governed by a three-phase insurance structure that determines which policy applies and how much coverage is available. The phase at the exact moment of impact — not before or after — controls the available insurance. Period 2/3 (driver on an active trip) provides $1,000,000 in coverage; Period 1 (app on, no ride accepted) provides only $50,000–$100,000 contingent coverage; Period 0 (app off) means only the driver's personal insurance applies. This calculator estimates your potential recovery based on your role, the applicable phase, and your damages.</p>
+
+  <h2>Run the Estimate</h2>
   <form id="calc" novalidate>
     <label for="role">Your role in the accident</label>
     <select id="role">
@@ -35,10 +36,29 @@ const description = 'Estimate potential settlement value for an Uber or Lyft acc
     <button type="submit">Estimate settlement</button>
   </form>
   <p id="result" aria-live="polite"></p>
-  <h2>Uber and Lyft insurance phases explained</h2>
-  <p><strong>Period 0 (app off):</strong> Driver&rsquo;s personal auto insurance applies. Rideshare companies provide no coverage. <strong>Period 1 (app on, no ride accepted):</strong> Uber and Lyft provide contingent liability coverage: $50,000/person, $100,000/accident, $25,000 property damage — but only if the driver&rsquo;s personal insurance doesn&rsquo;t apply. <strong>Periods 2&amp;3 (accepted trip through end of ride):</strong> Both companies provide $1,000,000 in third-party liability coverage and contingent comprehensive/collision coverage for the driver. This is the most favorable phase for passengers and third parties.</p>
-  <h2>Where to learn more</h2>
-  <p>See <a href="/guides/how-rideshare-accident-claims-work">how rideshare accident claims work</a>, <a href="/guides/rideshare-insurance-phases">rideshare insurance phases</a>, <a href="/guides/what-to-do-after-rideshare-accident">what to do after a rideshare accident</a>, and <a href="/guides/rideshare-accident-misconceptions">common misconceptions</a>.</p>
+
+  <h2>How Rideshare Accident Settlements Are Calculated</h2>
+  <p>Rideshare accident settlements combine the standard personal injury damages framework — economic damages plus a pain and suffering multiple — with the practical constraint of available insurance limits. Understanding both dimensions helps you assess whether a settlement offer is fair and what factors most affect your recovery.</p>
+
+  <h3>The Three Insurance Phases</h3>
+  <p><strong>Period 0 (app off):</strong> The driver is not logged into the rideshare platform. This is the same as any other private vehicle accident — the driver's personal auto insurance is the only coverage available, subject to the driver's personal policy limits. Rideshare companies provide zero coverage in Period 0.</p>
+  <p><strong>Period 1 (app on, no ride accepted):</strong> The driver is logged into the Uber or Lyft app and available for rides but has not yet accepted a request. Both companies provide contingent liability coverage of $50,000 per person, $100,000 per accident, and $25,000 in property damage. This coverage is contingent — it applies only if the driver's personal insurance denies the claim. Most personal auto policies contain commercial-use exclusions that deny claims when the driver is using the vehicle for hire, so the contingent coverage typically does apply. The $100,000 per-accident limit is shared among all injured parties, which can create coverage shortfalls in multi-victim accidents.</p>
+  <p><strong>Periods 2 and 3 (active trip):</strong> Period 2 begins when the driver accepts a ride request; Period 3 begins when the passenger enters the vehicle. Both Uber and Lyft provide $1,000,000 per accident in third-party liability coverage during this phase. This is the most favorable position for passengers and for third parties (pedestrians, other drivers) injured by a rideshare vehicle during an active trip. Uber and Lyft also provide contingent comprehensive and collision coverage for driver vehicle damage during Periods 2/3, subject to a higher deductible than typical personal policies.</p>
+
+  <h3>Economic and Non-Economic Damages</h3>
+  <p>The personal injury damages structure in rideshare accidents follows the same framework as any negligence claim. Economic damages — medical costs and lost wages — are recoverable dollar-for-dollar. Non-economic damages (pain and suffering) are estimated using a multiplier of economic damages, with the multiplier reflecting injury severity. For catastrophic injuries like traumatic brain injury or spinal cord damage, multipliers of 5&times; to 10&times; medical costs are common in significant liability cases. For minor soft-tissue injuries, multipliers of 1.5&times; to 3&times; are typical. The availability of the $1,000,000 Period 2/3 limit means that in serious injury cases, the limiting factor is not the insurance limit but the documented damages and the strength of the evidence.</p>
+
+  <h2>Learn More</h2>
+  <ul>
+    <li><a href="/guides/how-rideshare-accident-claims-work">How rideshare accident claims work</a></li>
+    <li><a href="/guides/rideshare-insurance-phases">Rideshare insurance phases explained</a></li>
+    <li><a href="/guides/what-to-do-after-rideshare-accident">What to do after a rideshare accident</a></li>
+    <li><a href="/guides/rideshare-accident-misconceptions">Common misconceptions</a></li>
+    <li><a href="/case-types">Types of rideshare accident claims</a></li>
+    <li><a href="/methodology">Calculator methodology</a></li>
+    <li><a href="/faq">Frequently asked questions</a></li>
+  </ul>
+
   <script>
     document.getElementById('calc').addEventListener('submit', e => {
       e.preventDefault();

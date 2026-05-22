@@ -1,11 +1,50 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const title = 'Methodology | rideshareaccidentcalc.com';
-const description = 'How the rideshare accident calculator works: pain multipliers by severity and insurance phase limits.';
+const description = 'How the rideshare accident settlement calculator works: pain and suffering multipliers by injury severity, insurance phase limits, and known limitations.';
 ---
 <BaseLayout title={title} description={description}>
-  <h1>Methodology</h1>
-  <p><em>Reviewed by Aspen Lockwood (AL), Editor-in-Chief. Updated May 2026.</em></p>
-  <h2>Pain and suffering multipliers</h2><p>Same as standard personal injury: catastrophic 7×, severe 5×, moderate 3.5×, minor 2× medical costs, plus 2× lost wages.</p>
-  <h2>Insurance phase caps</h2><p>Period 2/3: $1,000,000. Period 1: $100,000. Period 0: $50,000 (estimated personal policy minimum). The calculator caps the estimated recovery at the applicable limit because exceeding policy limits requires suing the driver personally — more difficult and uncertain recovery.</p>
+  <h1>Calculator Methodology</h1>
+  <p><em>Reviewed by Zara Flemming (ZF), Editor-in-Chief &mdash; Rideshare &amp; Transportation Accident Practice. Updated May 2026.</em></p>
+
+  <p>This page documents every formula, multiplier, and assumption used in the rideshare accident settlement calculator. The methodology is built on the standard personal injury damages framework — economic damages plus a pain and suffering multiple — with an overlay for the three-phase rideshare insurance structure that determines available coverage limits.</p>
+
+  <h2>Step 1: Economic Damages</h2>
+  <p>Economic damages are the measurable, documentable financial losses caused by the accident. The calculator uses two inputs:</p>
+  <ul>
+    <li><strong>Medical costs:</strong> All expenses for emergency treatment, hospitalization, surgery, physical therapy, follow-up care, and future medical expenses reasonably attributable to the accident injuries. For the calculator, use your actual incurred costs plus a reasonable estimate of future treatment if your injuries are ongoing.</li>
+    <li><strong>Lost wages:</strong> Income lost due to the inability to work during recovery. For employed workers, this is your hourly or salary rate times the hours or days missed. For self-employed workers, it is lost revenue net of expenses. Include anticipated future income loss if your injuries affect your long-term earning capacity.</li>
+  </ul>
+  <p>Economic damages are the foundation of the personal injury claim and are not subject to a multiplier — they are recoverable dollar-for-dollar (subject to the available insurance limits).</p>
+
+  <h2>Step 2: Pain and Suffering (Non-Economic Damages)</h2>
+  <p>Pain and suffering damages compensate for non-economic harm: physical pain, emotional distress, loss of enjoyment of life, and the psychological impact of the injuries. The calculator estimates non-economic damages using a multiplier applied to medical costs plus a separate factor for lost wages:</p>
+  <p><strong>Pain and Suffering = (Medical Costs &times; Severity Multiplier) + (Lost Wages &times; 2)</strong></p>
+  <p>Severity multipliers:</p>
+  <ul>
+    <li><strong>Catastrophic (7&times;):</strong> Traumatic brain injury, spinal cord injury, permanent disability, loss of limb, or other injuries requiring lifelong care or producing permanent functional loss.</li>
+    <li><strong>Severe (5&times;):</strong> Major surgery, extended hospitalization (more than a few days), serious fractures requiring surgical repair, or significant long-term impairment.</li>
+    <li><strong>Moderate (3.5&times;):</strong> Fractures treated conservatively, significant soft tissue injury requiring weeks of physical therapy, or injuries with a meaningful recovery period and residual effects.</li>
+    <li><strong>Minor (2&times;):</strong> Soft tissue injuries (whiplash, contusions), lacerations, or injuries with short treatment courses and full expected recovery.</li>
+  </ul>
+  <p>These multipliers reflect typical settlement ranges observed in personal injury claims. Actual negotiations depend on the specific facts, the strength of the medical documentation, the jurisdiction, and the skill of the attorneys involved. Courts and insurers sometimes use a per diem approach (daily rate for pain and suffering) rather than a multiplier — results may differ.</p>
+
+  <h2>Step 3: Insurance Phase Cap</h2>
+  <p>The most distinctive feature of rideshare accident claims is the three-phase insurance structure. The calculator caps the total estimated recovery at the applicable insurance limit, because exceeding policy limits requires a direct judgment against the driver personally — a recovery that is difficult when the driver has few personal assets.</p>
+  <ul>
+    <li><strong>Period 2/3 ($1,000,000):</strong> Driver has accepted a trip or is carrying a passenger. Both Uber and Lyft provide $1,000,000 in third-party liability coverage per accident. For passengers and third parties, this is the most favorable position.</li>
+    <li><strong>Period 1 ($100,000):</strong> Driver is logged into the app but has not accepted a request. Uber and Lyft provide contingent liability coverage of $50,000 per person / $100,000 per accident / $25,000 property damage — but only if the driver's personal insurance denies coverage. The calculator uses $100,000 as the per-accident limit for Period 1 claims.</li>
+    <li><strong>Period 0 ($50,000):</strong> Driver's app is off. Only the driver's personal auto insurance applies. The calculator uses $50,000 as a representative state minimum — actual personal policy limits vary widely. A driver with higher personal limits could provide greater coverage.</li>
+  </ul>
+
+  <h2>Known Limitations</h2>
+  <ul>
+    <li><strong>UIM coverage:</strong> If the at-fault driver's coverage is inadequate, your own uninsured/underinsured motorist coverage may provide additional recovery. The calculator does not model UIM.</li>
+    <li><strong>Multiple defendants:</strong> In a multi-vehicle accident, the other driver's liability coverage may also be available. The calculator models only the rideshare coverage layer.</li>
+    <li><strong>Attorney fees:</strong> Contingency fees (typically 33–40% of gross recovery) and case costs are not deducted from the estimate. Net recovery after fees will be lower.</li>
+    <li><strong>State variations:</strong> Some states have enacted rideshare insurance laws that alter the coverage amounts or contingency requirements. California, New York, and Illinois have state-specific rideshare insurance rules. The calculator uses the standard Uber/Lyft national framework.</li>
+    <li><strong>Comparative fault:</strong> If you are partially at fault for the accident, your recovery will be reduced proportionately in most states (comparative negligence) or barred entirely in contributory negligence states. The calculator does not apply a fault reduction.</li>
+  </ul>
+
+  <p>Return to the <a href="/">calculator</a>, or see the <a href="/guides/rideshare-insurance-phases">insurance phases guide</a> and <a href="/guides/how-rideshare-accident-claims-work">claims process guide</a>.</p>
 </BaseLayout>
